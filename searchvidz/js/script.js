@@ -26,3 +26,25 @@ $(function() {
 		}
 	});
 });
+
+function search() {
+	// Clear results
+	$('#results').html('');
+	$('#buttons').html('');
+
+	// Get form input
+	var q = $("#query").val();
+
+	// Run GET request on API
+	$.get(
+		"https://www.googleapis.com/youtube/v3/search",
+		{
+			part: 'snippet, id',
+			q: q,
+			type: 'video',
+			key: ''
+		}
+	)
+}
+
+alert(youtubeApiKey);
