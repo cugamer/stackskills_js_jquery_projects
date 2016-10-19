@@ -25,6 +25,10 @@ $(function() {
 			}, 400, function() {});
 		}
 	});
+
+	$('#search-form').submit(function(e){
+		e.preventDefault();
+	});
 });
 
 function search() {
@@ -42,9 +46,20 @@ function search() {
 			part: 'snippet, id',
 			q: q,
 			type: 'video',
-			key: ''
+			key: youtubeApiKey
+		},
+		function(data) {
+			var nextPageToken = data.nextPageToken;
+			var prevPageToken = data.prevPageToken;
+
+			$.each(data.items, function(i, item) {
+				var output = getOutput(item);
+				$('#results').append(output);
+			});
 		}
-	)
+	);
 }
 
-alert(youtubeApiKey);
+function getOutput(){
+
+}
