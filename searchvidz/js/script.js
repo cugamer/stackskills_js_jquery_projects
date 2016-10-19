@@ -51,7 +51,6 @@ function search() {
 		function(data) {
 			var nextPageToken = data.nextPageToken;
 			var prevPageToken = data.prevPageToken;
-			console.log(data);
 			$.each(data.items, function(i, item) {
 				var output = getOutput(item);
 				$('#results').append(output);
@@ -65,7 +64,6 @@ function search() {
 }
 
 function nextPage() {
-	console.log("called");
 	var token = $('#next-button').data('token');
 	var q = $('#next-button').data('query');
 
@@ -89,7 +87,6 @@ function nextPage() {
 		function(data) {
 			var nextPageToken = data.nextPageToken;
 			var prevPageToken = data.prevPageToken;
-			console.log(data);
 			$.each(data.items, function(i, item) {
 				var output = getOutput(item);
 				$('#results').append(output);
@@ -103,7 +100,6 @@ function nextPage() {
 }
 
 function prevPage() {
-	console.log("called");
 	var token = $('#prev-button').data('token');
 	var q = $('#prev-button').data('query');
 
@@ -127,7 +123,6 @@ function prevPage() {
 		function(data) {
 			var nextPageToken = data.nextPageToken;
 			var prevPageToken = data.prevPageToken;
-			console.log(data);
 			$.each(data.items, function(i, item) {
 				var output = getOutput(item);
 				$('#results').append(output);
@@ -154,7 +149,7 @@ function getOutput(item) {
 				'<img src="' + thumb + '">' +
 				'</div>' + 
 				'<div class="list-right">' + 
-				'<h3>' + title + '</h3>' +
+				'<h3><a class="fancybox fancybox.iframe" href="http://www.youtube.com/embed/' + videoId + '">' + title + '</h3>' +
 				'<small>By <span class="cTitle"> ' + channelTitle + ' </span> on ' + videoDate + '</small>' +
 				'<p>' + description + '</p>' +
 				'</div>' + 
@@ -177,6 +172,5 @@ function getButtons(prevPageToken, nextPageToken) {
 					nextPageToken + '" data-query="' + q + '" onclick="nextPage();">Next Page</button>' +
 				'</div>'
 	}
-	console.log(btnoutput)
 	return btnoutput;
 }
